@@ -1,9 +1,10 @@
-package ru.avenue.dev.project.services;
+package ru.avenue.dev.project.services.realisations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.avenue.dev.project.entities.User;
-import ru.avenue.dev.project.repositories.UsersRepository;
+import ru.avenue.dev.project.repositories.templates.UsersRepository;
+import ru.avenue.dev.project.services.templates.UsersService;
 
 import java.util.List;
 

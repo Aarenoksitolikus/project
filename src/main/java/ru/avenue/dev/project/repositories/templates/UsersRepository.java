@@ -1,4 +1,4 @@
-package ru.avenue.dev.project.repositories;
+package ru.avenue.dev.project.repositories.templates;
 
 import ru.avenue.dev.project.entities.User;
 

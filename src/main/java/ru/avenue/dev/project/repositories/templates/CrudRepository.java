@@ -1,4 +1,4 @@
-package ru.avenue.dev.project.repositories;
+package ru.avenue.dev.project.repositories.templates;
 
 import java.util.List;
 import java.util.Optional;

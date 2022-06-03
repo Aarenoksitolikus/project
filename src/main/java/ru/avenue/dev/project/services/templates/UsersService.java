@@ -1,4 +1,4 @@
-package ru.avenue.dev.project.services;
+package ru.avenue.dev.project.services.templates;
 
 import ru.avenue.dev.project.entities.User;
 
