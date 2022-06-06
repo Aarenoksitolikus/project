@@ -23,6 +23,8 @@ public class UsersController {
                 .firstName("Maxim")
                 .lastName("Ivanov")
                 .build());
+        model.addAttribute("user_from_db", usersService.findById(1L));
+        model.addAttribute("users", usersService.findAll(3, 1));
         return "users";
     }
 

@@ -24,7 +24,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<User> findAll(int limit, int offset) {
-        return null;
+        return usersRepository.findAll(limit, offset);
     }
 
     @Override
