@@ -22,6 +22,9 @@ Hello, ${user.firstName} ${user.lastName}!
     ${user_from_db}
 </p>
 <p>
+    <a href="/users/signup">Register</a>
+</p>
+<p>
     Other users:
 <ul>
     <#if users??>

@@ -1,6 +1,7 @@
 package ru.avenue.dev.project.services.realisations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.avenue.dev.project.entities.User;
 import ru.avenue.dev.project.repositories.templates.UsersRepository;
@@ -13,6 +14,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+//    @Autowired
+//    private PasswordEncoder encoder;
 
     @Override
     public User findById(Long id) {
@@ -39,7 +43,12 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public User createNewUser(User user) {
-        return null;
+        //захэшировали сырой пароль пользователя и сохранили в пользователя новый пароль
+//        String rowPassword = user.getHashPassword();
+//        String hashPassword = encoder.encode(rowPassword);
+//        user.setHashPassword(hashPassword);
+
+        return usersRepository.save(user);
     }
 
     @Override

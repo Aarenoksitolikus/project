@@ -24,6 +24,14 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
     //language=SQL
     private final String SQL_GET_PAGE_OF_USERS = "SELECT * FROM account LIMIT ? OFFSET ?";
 
+    //language=SQL
+    private final String SQL_SAVE_NEW_USER = "INSERT INTO account (first_name, last_name, hash_password) " +
+            "VALUES (?, ?, ?)";
+
+    //language=SQL
+    private final String SQL_GET_USER_BY_PARAMETERS = "SELECT * FROM account WHERE first_name = ? AND " +
+            "last_name = ? AND hash_password = ? ORDER BY ID desc LIMIT 1";
+
     private RowMapper<User> rowMapper = (rs, rowNum) -> User.builder()
             .id(rs.getLong("id"))
             .firstName(rs.getString("first_name"))
@@ -33,7 +41,14 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public User save(User user) {
-        return null;
+        template.update(SQL_SAVE_NEW_USER,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getHashPassword());
+        return template.queryForObject(SQL_GET_USER_BY_PARAMETERS, rowMapper,
+                user.getFirstName(),
+                user.getLastName(),
+                user.getHashPassword());
     }
 
     @Override
@@ -58,7 +73,7 @@ public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Override
     public Optional<User> findById(Long id) {
-        return Optional.of(template.queryForObject(SQL_GET_USER_BY_ID, rowMapper, id));
+        return Optional.ofNullable(template.queryForObject(SQL_GET_USER_BY_ID, rowMapper, id));
     }
 
     @Override

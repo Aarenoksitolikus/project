@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.avenue.dev.project.entities.User;
@@ -33,8 +34,19 @@ public class UsersController {
         return null;
     }
 
+
     @GetMapping("/signup")
-    public String getSignUpPage() {
-        return usersService.createNewUser(null).toString();
+    public String getSignUpPage(Model model) {
+        return "registration";
+    }
+
+    @PostMapping("/signup")
+    public String processRegistration(@ModelAttribute User userForm, Model model) {
+        User newUser = usersService.createNewUser(userForm);
+        if (newUser != null) {
+            return "success_registration";
+        }
+        model.addAttribute("wrongData", "Something went wrong");
+        return "registration";
     }
 }
