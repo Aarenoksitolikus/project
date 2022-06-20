@@ -10,9 +10,10 @@
 <body>
 <div>
     <form method="post" action="/users/signup">
-        <input type="text" name="firstName">
-        <input type="text" name="lastName">
-        <input type="password" name="hashPassword">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="password" name="hashPassword" placeholder="Password">
         <input type="submit" value="Зарегистрироваться">
     </form>
 </div>

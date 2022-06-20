@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.avenue.dev.project.entities.User;
 import ru.avenue.dev.project.services.templates.UsersService;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping("/users")
 public class UsersController {
@@ -18,13 +20,13 @@ public class UsersController {
     private UsersService usersService;
 
     @GetMapping
-    public String getUsersPage(Model model) {
+    public String getUsersPage(Model model, Principal principal) {
         model.addAttribute("user", User.builder()
                 .id(1L)
                 .firstName("Maxim")
                 .lastName("Ivanov")
                 .build());
-        model.addAttribute("user_from_db", usersService.findById(1L));
+        model.addAttribute("user_from_db", usersService.findByEmail(principal.getName()));
         model.addAttribute("users", usersService.findAll(3, 1));
         return "users";
     }
