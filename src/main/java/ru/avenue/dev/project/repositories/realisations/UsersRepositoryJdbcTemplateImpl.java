@@ -1,6 +1,7 @@
 package ru.avenue.dev.project.repositories.realisations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Profile("jdbc")
 public class UsersRepositoryJdbcTemplateImpl implements UsersRepository {
 
     @Autowired
